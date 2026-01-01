@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Senan - Full Stack Developer</title>
+    
+    <link href="/dist/style.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" sizes="24x24" href="/assets/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==== CSS VARIABLES - THEME COLORS (FINAL FIX) ==== */
+        :root {
+            /* الوضع النهاري - ألوان أزرق غامق متناسقة */
+            --bg-primary: #f8fafc; /* رمادي أزرق فاتح جداً */
+            --bg-secondary: #eef2f7; /* أزرق رمادي فاتح */
+            --bg-dark: #e2e8f0; /* أزرق رمادي متوسط */
+            --text-primary: #0f172a; /* أزرق داكن جداً للنصوص الرئيسية */
+            --text-secondary: #334155; /* رمادي أزرق غامق للنصوص الثانوية */
+            
+            /* تغيير 1: أزرق غامق للناف بار والفوتر */
+            --nav-bg: #1144eb; /* أزرق غامق */
+            --footer-text: #e0f2fe; /* نص أزرق فاتح للفوتر */
+            
+            /* تغيير 2: أيقونات المهارات والخدمات نفس اللون (أزرق غامق) */
+            --text-accent: #0284c7; /* أزرق غامق للعناوين */
+            --service-icon-default: #0369a1; /* أزرق غامق جداً */
+            --service-icon-hover: #075985; /* أزرق أغمق عند التمرير */
+            --skill-icon-default: #0369a1; /* نفس لون الخدمات */
+            --skill-icon-hover: #075985; /* نفس لون الخدمات */
+            
+            --border-color: #1475eb; /* رمادي أزرق فاتح للحدود */
+            --shadow-color: rgba(15, 23, 42, 0.1); /* ظل أزرق داكن */
+            --glow-color: rgba(2, 132, 199, 0.4); /* توهج أزرق غامق */
+            
+            /* خلفيات مربعات المهارات والخدمات - أزرق فاتح جداً */
+            --skill-box-bg: #2c98e1; /* أزرق فاتح جداً لمربعات المهارات */
+            --service-box-bg: #dbeafe; /* أزرق فاتح لمربعات الخدمات */
+            --service-box-border: #1d76dc; /* أزرق فاتح للحدود */
+        }
+        
+        .dark {
+            /* الوضع المظلم - يبقى كما كان تماماً (أخضر نيون) */
+            --bg-primary: #121e28;
+            --bg-secondary: #1e293b;
+            --bg-dark: #0f172a;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-accent: #00ff80;
+            --border-color: #334155;
+            --shadow-color: rgba(0, 255, 128, 0.2);
+            --glow-color: rgba(0, 255, 128, 0.7);
+            --nav-bg: rgba(0, 0, 0, 0.7);
+            --footer-text: #ffffff;
+            
+            /* الأيقونات في الوضع الليلي - كما كانت (أخضر نيون) */
+            --service-icon-default: #1d931d; /* نيون أخضر فاتح جداً */
+            --service-icon-hover: #00cc66;   /* نيون أخضر غامق */
+            --skill-icon-default: #a0ffa0; /* نيون أخضر فاتح */
+            --skill-icon-hover: #00cc66;   /* نيون أخضر غامق */
+            
+            /* لا حاجة لهذه المتغيرات في الوضع الليلي */
+            --skill-box-bg: transparent;
+            --service-box-bg: transparent;
+            --service-box-border: var(--border-color);
+        }
+
+        /* ==== بقية الـ CSS يبقى كما هو ==== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==== HEADER & NAVIGATION ==== */
+        .nav-header {
+            background-color: var(--nav-bg) !important; /* أزرق غامق */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+        .nav-item {
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--footer-text) !important; /* نص أزرق فاتح */
+            padding: 0.5rem 0.75rem;
+            text-decoration: none;
+        }
+        .nav-item:hover {
+            color: var(--text-accent) !important; /* أزرق سماوي */
+            transform: translateY(-2px);
+        }
+        .highlight-btn {
+            background-color: var(--text-accent);
+            color: rgb(239, 243, 238);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+        .highlight-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        /* ==== THEME TOGGLE BUTTON ==== */
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--footer-text); /* لون نص الفوتر */
+            color: var(--footer-text);
+            padding: 0.5rem 1rem;
+            border-radius: 0.4rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+        .theme-toggle:hover {
+            background-color: var(--footer-text);
+            color: var(--nav-bg);
+            transform: translateY(-2px);
+        }
+
+        /* ==== CIRCULAR IMAGE ==== */
+        .circular-image {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+        }
+        .circular-image::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--text-accent), transparent);
+            animation: rotate 8s linear infinite;
+            z-index: 1;
+        }
+        .circular-image::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--shadow-color);
+            animation: glow 2s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+        .circular-image img {
+            width: 90%; height: 90%;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 2;
+            border: 2px solid var(--bg-primary);
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 30px var(--shadow-color); }
+            100% { box-shadow: 0 0 50px var(--glow-color); }
+        }
+        .ray-animation::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, transparent, transparent 40%, var(--shadow-color) 60%, transparent 80%);
+            animation: rays 4s linear infinite;
+        }
+        @keyframes rays {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* ==== SOCIAL ICONS ==== */
+        .social-icon-wrapper {
+            position: relative;
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+            color: var(--text-secondary); /* كما كان */
+            font-size: 1.25rem;
+        }
+        .social-icon:hover {
+            transform: scale(1.2) rotate(15deg);
+            color: var(--text-accent); /* كما كان */
+        }
+        .social-name {
+            position: absolute;
+            top: 100%; left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-accent);
+            white-space: nowrap;
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+        .social-icon-wrapper:hover .social-name {
+            opacity: 1;
+        }
+
+        /* ==== SKILLS SECTION ==== */
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .skills-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0.5rem;
+        }
+        .enhanced-icon {
+            width: 90px; height: 90px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--skill-box-bg));
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .skill-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-accent) !important;
+            text-shadow: 0 0 10px var(--glow-color);
+            margin-top: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .glow-text {
+            color: var(--text-primary);
+            text-shadow: 0 0 10px var(--glow-color);
+            animation: title-glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes title-glow {
+            0% { text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--shadow-color); }
+            100% { text-shadow: 0 0 15px var(--glow-color), 0 0 30px var(--glow-color), 0 0 40px var(--shadow-color); }
+        }
+        .glowing-line {
+            width: 90%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--text-accent), transparent);
+            margin: 1.5rem auto 0;
+            border-radius: 2px;
+            animation: line-glow 2s ease-in-out infinite alternate;
+            box-shadow: 0 0 10px var(--shadow-color);
+        }
+        @keyframes line-glow {
+            0% { box-shadow: 0 0 10px var(--shadow-color); }
+            100% { box-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--shadow-color); }
+        }
+
+        /* ==== التأثيرات عند التمرير ==== */
+        .skill-item:hover .enhanced-icon {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-color);
+            border: 2px solid var(--text-accent);
+        }
+        .skill-item:hover .skill-name {
+            opacity: 1;
+        }
+
+        /* ==== TECH ICON COLORS - FIXED (لا يتغير) ==== */
+        .html-icon { color: #f16529 !important; }
+        .skill-item:hover .html-icon { color: #ff8c42 !important; filter: drop-shadow(0 0 10px rgba(241, 101, 41, 0.8)); }
+        
+        .css-icon { color: #264de4 !important; }
+        .skill-item:hover .css-icon { color: #4285f4 !important; filter: drop-shadow(0 0 10px rgba(38, 77, 228, 0.8)); }
+        
+        .js-icon { color: #f7df1e !important; }
+        .skill-item:hover .js-icon { color: #ffeb3b !important; filter: drop-shadow(0 0 10px rgba(247, 223, 30, 0.8)); }
+        
+        .php-icon { color: #777bb4 !important; }
+        .skill-item:hover .php-icon { color: #9a9dd6 !important; filter: drop-shadow(0 0 10px rgba(119, 123, 180, 0.8)); }
+        
+        .mysql-icon { color: #4479a1 !important; }
+        .skill-item:hover .mysql-icon { color: #5d9bd0 !important; filter: drop-shadow(0 0 10px rgba(68, 121, 161, 0.8)); }
+        
+        .laravel-icon { color: #ff2d20 !important; }
+        .skill-item:hover .laravel-icon { color: #ff6b6b !important; filter: drop-shadow(0 0 10px rgba(255, 45, 32, 0.8)); }
+        
+        .tailwind-svg { fill: #06b6d4 !important; }
+        .skill-item:hover .tailwind-svg { fill: #22d3ee !important; filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8)); }
+        
+        .bootstrap-svg { fill: #7952b3 !important; }
+        .skill-item:hover .bootstrap-svg { fill: #9370db !important; filter: drop-shadow(0 0 10px rgba(121, 82, 179, 0.8)); }
+        
+        .jquery-svg { filter: brightness(0) saturate(100%) invert(26%) sepia(96%) saturate(1566%) hue-rotate(183deg) brightness(91%) contrast(94%) !important; }
+        .skill-item:hover .jquery-svg { filter: drop-shadow(0 0 10px rgba(7, 105, 173, 0.8)) !important; }
+
+        /* ==== SERVICES SECTION ==== */
+        .service-card {
+            background-color: var(--service-box-bg, var(--bg-secondary));
+            border: 1px solid var(--service-box-border, var(--border-color));
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        .service-card h3 {
+            color: var(--service-icon-default) !important;
+            transition: color 0.3s ease;
+        }
+        .service-card:hover h3 {
+            color: var(--service-icon-hover) !important;
+        }
+        .service-icon {
+            color: var(--service-icon-default) !important;
+            transition: color 0.3s ease;
+        }
+        .service-card:hover .service-icon {
+            color: var(--service-icon-hover) !important;
+        }
+        .service-card p {
+            color: var(--text-secondary);
+        }
+        .service-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 10px 25px var(--shadow-color);
+            border-color: var(--text-accent);
+        }
+
+        /* ==== CONTACT SECTION - FIXED ==== */
+        .contact-form-box {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-form-box input,
+        .contact-form-box textarea {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            border-radius: 0.75rem;
+            padding: 0.875rem 1.25rem;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .contact-form-box input:focus,
+        .contact-form-box textarea:focus {
+            outline: none;
+            border-color: var(--text-accent);
+            box-shadow: 0 0 0 3px var(--shadow-color);
+        }
+        .contact-form-box button {
+            background-color: var(--text-accent);
+            color: white;
+            width: 100%;
+            padding: 0.875rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+        .contact-form-box button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+        .contact-info h3 {
+            color: var(--text-accent) !important;
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+        .contact-info p {
+            color: var(--text-secondary) !important;
+            font-size: 1.05rem;
+        }
+        .contact-info-icon {
+            color: var(--text-accent) !important;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        /* ==== FOOTER ==== */
+        .footer-section {
+            background-color: var(--nav-bg) !important; /* أزرق غامق */
+            border-color: var(--border-color);
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-icon svg {
+            color: var(--footer-text);
+            transition: all 0.3s ease;
+        }
+        .footer-icon:hover svg {
+            color: var(--text-accent) !important;
+            transform: scale(1.1);
+        }
+
+        /* ==== CODE TEXT ==== */
+        .code-text {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            font-family: 'Fira Code', monospace;
+            border-radius: 8px;
+            padding: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            color: var(--text-primary);
+            transition: all 0.5s ease;
+        }
+
+        /* ==== RESPONSIVE ==== */
+        @media (min-width: 640px) {
+            .circular-image { width: 180px; height: 180px; }
+            .enhanced-icon { width: 100px; height: 100px; }
+            .nav-item, .highlight-btn, .theme-toggle { font-size: 1rem; }
+        }
+        @media (min-width: 768px) {
+            .circular-image { width: 200px; height: 200px; }
+            .enhanced-icon { width: 110px; height: 110px; }
+            .skills-row { flex-wrap: nowrap; }
+        }
+        @media (max-width: 480px) {
+            .circular-image { width: 120px; height: 120px; }
+            .enhanced-icon { width: 70px; height: 70px; }
+            .nav-item, .highlight-btn, .theme-toggle { font-size: 0.8rem; }
+            .theme-toggle {
+                padding: 0.4rem;
+                gap: 0.25rem;
+            }
+            .service-card {
+                padding: 1.5rem;
+            }
+        }
+        @media (max-width: 320px) {
+            .nav-item { padding: 0.3rem 0.5rem; }
+            .skills-row { gap: 0.75rem; }
+            .enhanced-icon { width: 60px; height: 60px; }
+        }
+
+        /* ==== LIGHT THEME HOVER EFFECTS (Blue Grade) ==== */
+
+/* 1- Change name Mohammed Senan to blue light */
+h1 {
+    color: var(--text-accent) !important;
+}
+
+/* 2- Navbar hover: black underline and black text */
+.nav-item:hover {
+    color: #38ee59 !important; /* Black text */
+}
+.nav-item:hover::after {
+    background-color: #21d52d !important; /* Black underline */
+}
+
+/* 3- Section headings blue, shining blue on hover */
+.glow-text {
+    color: var(--text-accent) !important; /* Blue */
+}
+.glow-text:hover {
+    color: #00aaff !important; /* Shining bright blue */
+    text-shadow: 0 0 15px rgba(156, 203, 226, 0.5);
+    cursor: pointer;
+}
+
+/* ==== LIGHT THEME HOVER EFFECTS (Blue Grade) ==== */
+
+/* Code box border on hover */
+.code-text:hover {
+    border: 2px solid var(--text-accent); /* Uses #0284c7 in light mode */
+    box-shadow: 0 0 20px var(--glow-color); /* Blue glow effect */
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Name hover color */
+main h1:hover {
+    color: var(--text-accent) !important; /* Changes to blue #0284c7 */
+    text-shadow: 0 0 15px var(--glow-color); /* Blue glow effect */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* ==== LIGHT THEME HOVER EFFECTS (Blue Grade) ==== */
+
+/* 1- Service boxes and icons shining effect */
+.service-card:hover {
+    border-color: #00aaff !important;
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.4) !important;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    color: #00aaff !important;
+    filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.6));
+}
+
+.service-card:hover h3 {
+    color: #00aaff !important;
+    text-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+}
+
+/* 2- Typing text blue light color */
+.typing {
+    color: var(--text-accent) !important; /* #0284c7 in light mode */
+}
+
+
+
+/* ==== DARK MODE CUSTOMIZATIONS ==== */
+
+/* 1 & 2 - Hire Me button colors */
+.dark .highlight-btn {
+    background-color: #00cc66 !important;
+    border-color: #00cc66;
+}
+.dark .highlight-btn:hover {
+    background-color: #1d931d !important;
+    border-color: #1d931d;
+}
+
+/* 3 - Underline effect for navbar items (About, Skills, Services, Contact) */
+.nav-item {
+    position: relative;
+}
+.nav-item:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 2px;
+    background-color: var(--text-accent);
+    border-radius: 2px;
+}
+
+/* 4 - Theme toggle button color */
+.dark .theme-toggle {
+    background-color: #00cc66;
+    border-color: #08fc82;
+}
+.dark .theme-toggle:hover {
+    background-color: #30d630 ;
+    border-color: #30d630 ;
+}
+
+/* 5 - Typing text color */
+.dark .typing {
+    color: #46ef9b !important;
+}
+
+/* 6 - Send Message button color */
+.dark .contact-form-box button {
+    background-color: #0c8d4c !important;
+}
+.dark .contact-form-box button:hover {
+    background-color: #0daa0d !important;
+}
+
+/* 7 - Section headings hover color */
+.dark .glow-text:hover {
+    color: #00cc66 !important;
+    cursor: pointer;
+}
+/* ==== ADDITIONAL DARK MODE HOVER EFFECTS ==== */
+
+/* Add border to code box on hover */
+.dark .code-text:hover {
+    border: 2px solid #00cc66;
+    box-shadow: 0 0 20px rgba(0, 204, 102, 0.3);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Name hover color */
+.dark main h1:hover {
+    color: #00cc66 !important;
+    text-shadow: 0 0 15px rgba(0, 204, 102, 0.5);
+    transition: all 0.3s ease;
+}
+
+/* ==== إصلاح الوضع الليلي - إرجاع اللون الأخضر ==== */
+
+/* صناديق الخدمات - تأثير hover أخضر في الوضع الليلي */
+.dark .service-card:hover {
+    border-color: var(--text-accent) !important;
+    box-shadow: 0 0 25px var(--shadow-color) !important;
+}
+
+.dark .service-card:hover .service-icon {
+    color: var(--service-icon-hover) !important;
+    filter: drop-shadow(0 0 10px var(--glow-color)) !important;
+}
+
+.dark .service-card:hover h3 {
+    color: var(--service-icon-hover) !important;
+    text-shadow: 0 0 15px var(--glow-color)) !important;
+}
+
+/* نص Typing - أخضر في الوضع الليلي */
+.dark .typing {
+    color: var(--text-accent) !important;
+}
+
+
+
+
+</style>
+
+
+</head>
+
+<body class="min-h-screen transition-colors duration-500">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen fixed inset-0 flex justify-center items-center z-50 transition-opacity" 
+         style="background-color: var(--bg-primary);">
+        <div class="loading-content text-center">
+            <svg class="hexagon-svg w-36 h-36 animate-pulse" viewBox="0 0 100 100" style="color: var(--text-accent);">
+                <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" 
+                        fill="none" stroke="currentColor" stroke-width="3" />
+                <text x="50" y="55" text-anchor="middle" font-family="Poppins" 
+                      font-size="30" fill="currentColor" font-weight="700">M.S</text>
+            </svg>
+            <div class="loading-text mt-4 font-semibold" style="color: var(--text-accent);">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="nav-header sticky top-0 z-40 backdrop-blur-lg" style="background-color: var(--nav-bg);">
+        <nav class="w-full flex items-center justify-between py-4 px-4 md:px-10">
+            <!-- Avatar -->
+            <div class="w-10 h-10 rounded-full overflow-hidden border border-emerald-500 flex-shrink-0" style="border-color: var(--footer-text);">
+                <img src="/assets/personalphoto.png" alt="My Photo" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Nav Items -->
+            <div class="flex space-x-3 md:space-x-6 flex-wrap justify-center">
+                <a href="index.html" class="nav-item">About</a>
+                <a href="skills.html" class="nav-item">Skills</a>
+                <a href="services.html" class="nav-item">Services</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+                <a href="contact.html" class="highlight-btn">Hire me</a>
+            </div>
+
+
+
+            <!-- Theme Toggle -->
+            <button class="theme-toggle p-2" id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun text-lg md:text-xl" id="theme-icon"></i>
+                <span id="theme-text" class="hidden sm:inline ml-1">Light</span>
+            </button>
+        </nav>
+    </header>
+
+            <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 sm:px-6 sm:py-12 flex-1">
+         <div class="flex flex-col items-center gap-5.50 sm:gap-6">
+        <!-- Circular Image -->
+         <div class="relative">
+            <div class="circular-image">
+                <img src="/assets/personalphoto.png" alt="Mohammed Senan">
+            </div>
+            <div class="ray-animation"></div>
+        </div>
+        
+        <!-- Name & Title -->
+        <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center leading-tight">
+            Mohammed Senan
+        </h1>
+        <div class="text-2xl"><span class="typing text-teal-300 text-2xl font-bold"></span></div>
+    </div>
+
+            <!-- Description -->
+        <div>
+            <div class="code-text">
+                <span class="function">print</span>(<span class="string">"Hello World! Welcome to my portfolio"</span>)<br><br>
+                <span class="keyword">I develop</span> <span class="variable">responsive web applications</span> <span class="keyword">and transform</span> <span class="variable">data</span> <span class="keyword">into</span> <span class="string">actionable insights</span>. <span class="keyword">With expertise in</span> <span class="type">end-to-end development</span>, <span class="variable">data management</span>, <span class="keyword">and</span> <span class="function">creating</span> <span class="string">scalable solutions</span> <span class="keyword">that</span> <span class="function">drive</span> <span class="variable">business value</span>.
+            </div>
+
+            <!-- Social Icons -->
+            <div class="flex space-x-4 sm:space-x-6 pt-4 sm:pt-6">
+                <div class="social-icon-wrapper relative">
+                    <a href="https://www.facebook.com/mohammed.salahi.3" class="social-icon text-lg sm:text-xl"><i class="fab fa-facebook-f"></i></a>
+                    <span class="social-name">Facebook</span>
+                </div>
+                <!-- <div class="social-icon-wrapper relative">
+                    <a href="#" class="social-icon text-lg sm:text-xl"><i class="fab fa-twitter"></i></a>
+                    <span class="social-name">Twitter</span>
+                </div> -->
+                <!-- <div class="social-icon-wrapper relative">
+                    <a href="#" class="social-icon text-lg sm:text-xl"><i class="fab fa-instagram"></i></a>
+                    <span class="social-name">Instagram</span>
+                </div> -->
+                <div class="social-icon-wrapper relative">
+                    <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" class="social-icon text-lg sm:text-xl"><i class="fab fa-linkedin-in"></i></a>
+                    <span class="social-name">LinkedIn</span>
+                </div>
+                <div class="social-icon-wrapper relative">
+                    <a href="https://github.com/msenan99devlop" class="social-icon text-lg sm:text-xl"><i class="fab fa-github"></i></a>
+                    <span class="social-name">GitHub</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==== SKILLS SECTION ==== -->
+        <section class="skills-section mt-12 sm:mt-16 lg:mt-20">
+            <h6 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-1 sm:mb-4 lg:mb-8 glow-text">Skills</h6>
+            <h6 class="text-1xl font-bold text-center mb-1">What I Build With</h6>
+            <div class="skills-grid">
+                <!-- Row 1 -->
+                <div class="skills-row">
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <i class="fab fa-html5 html-icon text-5xl"></i>
+                        </div>
+                        <div class="skill-name">HTML</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <i class="fab fa-css3-alt css-icon text-5xl"></i>
+                        </div>
+                        <div class="skill-name">CSS</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <i class="fab fa-js js-icon text-5xl"></i>
+                        </div>
+                        <div class="skill-name">JavaScript</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <i class="fab fa-php php-icon text-5xl"></i>
+                        </div>
+                        <div class="skill-name">PHP</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" 
+                                 alt="Python" class="w-14 h-14">
+                        </div>
+                        <div class="skill-name">Python</div>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="skills-row">
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <svg class="w-14 h-14 bootstrap-svg" viewBox="0 0 105 94">
+                                <path d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
+                            </svg>
+                        </div>
+                        <div class="skill-name">Bootstrap</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <svg class="w-14 h-14 tailwind-svg" viewBox="0 0 54 33">
+                                <path d="M27,0c-7.2,0-11.7,3.6-13.5,10.8c2.7-3.6,5.85-4.95,9.45-4.05c2.054,0.513,3.522,2.004,5.147,3.653 C30.744,13.09,33.808,16.2,40.5,16.2c7.2,0,11.7-3.6,13.5-10.8c-2.7,3.6-5.85,4.95-9.45,4.05c-2.054-0.513-3.522-2.004-5.147-3.653 C36.756,3.11,33.692,0,27,0z M13.5,16.2C6.3,16.2,1.8,19.8,0,27c2.7-3.6,5.85-4.95,9.45-4.05c2.054,0.513,3.522,2.004,5.147,3.653 C17.244,29.29,20.308,32.4,27,32.4c7.2,0,11.7-3.6,13.5-10.8c-2.7,3.6-5.85,4.95-9.45,4.05c-2.054-0.513-3.522-2.004-5.147-3.653 C23.256,19.31,20.192,16.2,13.5,16.2z"></path>
+                            </svg>
+                        </div>
+                        <div class="skill-name">Tailwind</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jquery/jquery-original.svg" 
+                                 alt="jQuery" class="w-14 h-14 jquery-svg">
+                        </div>
+                        <div class="skill-name">jQuery</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <i class="fas fa-database mysql-icon text-5xl"></i>
+                        </div>
+                        <div class="skill-name">MySQL</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="enhanced-icon flex items-center justify-center">
+                            <i class="fab fa-laravel laravel-icon text-5xl"></i>
+                        </div>
+                        <div class="skill-name">Laravel</div>
+                    </div>
+                </div>
+                <div class="glowing-line"></div>
+            </div>
+        </section>
+
+        <!-- ==== SERVICES SECTION ==== -->
+        <section class="services-section mt-20 py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold glow-text">Services</h2>
+                <p class="text-accent mt-2 font-semibold">What I Provide</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+                <div class="service-card p-8 rounded-xl text-center group">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-14 h-14 service-icon transition" fill="currentColor" viewBox="0 0 20 20">
+                            <rect x="2" y="4" width="16" height="10" rx="1" stroke="currentColor" fill="none" stroke-width="1.5"/>
+                            <rect x="7" y="14" width="6" height="2" rx="0.5"/>
+                            <path d="M5 7h10M5 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Full-Stack Developer</h3>
+                    <p class="text-gray-300 leading-relaxed">Where design meets logic. I create seamless, scalable web experiences that bridge user needs and technical excellence.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-xl text-center group">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-14 h-14 service-icon transition" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 20H20V4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <rect x="6" y="14" width="2" height="4" rx="0.5"/>
+                            <rect x="10" y="10" width="2" height="8" rx="0.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Data Analytic</h3>
+                    <p class="text-gray-300">Data Analyst turning raw data into clear, actionable insights that drive smart, effective, and strategic business decisions.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-xl text-center group">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-14 h-14 service-icon transition" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M14 21c-2.21 0-4-1.79-4-4 0-.93.33-1.78.89-2.44l-3.62-3.62a1 1 0 0 1 0-1.41l2.83-2.83a1 1 0 0 1 1.41 0l3.62 3.62c.66.56 1.51.89 2.44.89 2.21 0 4-1.79 4-4s-1.79-4-4-4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="14" cy="13" r="1" fill="currentColor"/>
+                            <circle cx="17" cy="10" r="1" fill="currentColor"/>
+                            <circle cx="11" cy="10" r="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Graphic Designer</h3>
+                    <p class="text-gray-300">I combine clean code with creative graphic design to build cohesive, visually compelling digital solutions that communicate and perform.</p>
+                </div>
+            </div>
+
+        </section>
+             <div class="glowing-line"></div>
+
+        <!-- ==== CONTACT SECTION ==== -->
+        <section class="contact-section mt-20 py-20">
+            <h2 class="text-4xl font-bold text-center glow-text">Contact Me</h2>
+            <p class="subtitle text-center font-semibold text-accent mb-12">Let’s build something amazing together</p>
+
+            <div class="contact-container max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
+                <div class="contact-form-box p-10 rounded-xl">
+                    <form id="contact-form">
+                        <input type="text" placeholder="Your Name" required class="mb-5">
+                        <input type="email" placeholder="Your Email" required class="mb-5">
+                        <textarea rows="4" placeholder="Your Message" required class="mb-5"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info flex flex-col gap-7">
+                    <div class="contact-info-item flex items-start">
+                        <svg class="contact-info-icon mt-1 mr-4 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <div class="contact-info-text">
+                            <h3 class="font-bold text-lg mb-1">Email</h3>
+                            <p class="text-gray-300">msenan99@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item flex items-start">
+                        <svg class="contact-info-icon mt-1 mr-4 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="contact-info-text">
+                            <h3 class="font-bold text-lg mb-1">Location</h3>
+                            <p class="text-gray-300">Yemen,Sana'a</p>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn -->
+                      <div class="contact-info-item flex items-start">
+                        <svg class="contact-info-icon mt-1 mr-4 w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                       </svg>
+                       <div class="contact-info-text">
+                       <h3 class="font-bold text-lg mb-1">LinkedIn</h3>
+                     <p class="text-gray-300">@mohammed-senan</p>
+                     </div>
+                    </div>
+
+                    <!-- !-- GitHub -->
+                     <div class="contact-info-item flex items-start">
+                    <svg class="contact-info-icon mt-1 mr-4 w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C19.138 20.167 24 16.418 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                         <div class="contact-info-text">
+                         <h3 class="font-bold text-lg mb-1">GitHub</h3>
+                     <p class="text-gray-300">@mohammed-senan-dev</p>
+                </div>
+             </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section py-8 border-t" style="background-color: var(--nav-bg); border-color: var(--border-color);">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl font-bold" style="color: var(--footer-text);">Mohammed Senan</h3>
+                </div>
+
+                <div class="text-center md:text-right text-sm" style="color: var(--footer-text);">
+                    &copy; 2025 Mohammed Senan. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="./app.js"></script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        htmlElement.classList.toggle('dark', currentTheme === 'dark');
+        updateThemeUI(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = htmlElement.classList.contains('dark');
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            htmlElement.classList.toggle('dark', newTheme === 'dark');
+            localStorage.setItem('theme', newTheme);
+            updateThemeUI(newTheme);
+        });
+
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            text.textContent = theme === 'dark' ? 'Light' : 'Dark';
+        }
+
+        // Loading Screen
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const loading = document.getElementById('loading-screen');
+                loading.style.opacity = '0';
+                setTimeout(() => loading.style.display = 'none',500);
+            }, 1000);
+        });
+
+        // Contact Form
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
