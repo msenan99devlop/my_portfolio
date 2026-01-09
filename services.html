@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Senan - Services</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen transition-colors duration-500">
+     <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen fixed inset-0 flex justify-center items-center z-50">
+        <div class="loading-content text-center">
+            <svg class="hexagon-svg w-36 h-36 animate-pulse" viewBox="0 0 100 100" style="color: var(--text-accent);">
+                <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" 
+                        fill="none" stroke="currentColor" stroke-width="3" />
+                <text x="50" y="55" text-anchor="middle" font-family="Poppins" 
+                      font-size="20" fill="currentColor" font-weight="600">Services</text>
+            </svg>
+            <div class="loading-text mt-4 font-semibold" style="color: var(--text-accent);">Loading...</div>
+        </div>
+    </div>
+
+
+    <!-- Header/Navigation -->
+    <header class="nav-header sticky top-0 z-40 backdrop-blur-lg">
+        <nav class="w-full flex items-center justify-between py-4 px-4 md:px-10">
+            <a href="index.html" class="w-10 h-10 rounded-full overflow-hidden border border-emerald-500 flex-shrink-0 block" style="border-color: var(--footer-text);">
+                <img src="assets/personalphoto.png" alt="My Photo" class="w-full h-full object-cover">
+            </a>
+            <div class="flex space-x-3 md:space-x-6 flex-wrap justify-center">
+                <a href="index.html#about" class="nav-item">About</a>
+                <a href="skills.html" class="nav-item">Skills</a>
+                <a href="services.html" class="nav-item">Services</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+                <a href="contact.html" class="highlight-btn">Hire me</a>
+            </div>
+            <button class="theme-toggle p-2" id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun text-lg md:text-xl" id="theme-icon"></i>
+                <span id="theme-text" class="hidden sm:inline ml-1">Light</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-0 sm:px-6 sm:py-8 flex-1">
+        <section class="services-section mt-0 py-0">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold glow-text">Services</h2>
+                <p class="text-accent mt-2 font-semibold">What I Provide</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+                <!-- Service 1 -->
+                <div class="service-card p-8 rounded-xl text-center group">
+                    <div class="flex justify-center mb-4 service-icon-container">
+<i class="fa-solid fa-laptop-code"></i>                            <rect x="2" y="4" width="16" height="10" rx="1" stroke="currentColor" fill="none" stroke-width="1.5"/>
+                            <rect x="7" y="14" width="6" height="2" rx="0.5"/>
+                            <path d="M5 7h10M5 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Full-Stack Developer</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Where design meets logic. I create seamless, scalable web experiences that bridge user needs and technical excellence.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card p-8 rounded-xl text-center group">
+                    <div class="flex justify-center mb-4 service-icon-container">
+                        <svg class="w-16 h-16 mx-auto transition" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M14 21c-2.21 0-4-1.79-4-4 0-.93.33-1.78.89-2.44l-3.62-3.62a1 1 0 0 1 0-1.41l2.83-2.83a1 1 0 0 1 1.41 0l3.62 3.62c.66.56 1.51.89 2.44.89 2.21 0 4-1.79 4-4s-1.79-4-4-4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="14" cy="13" r="1" fill="currentColor"/>
+                            <circle cx="17" cy="10" r="1" fill="currentColor"/>
+                            <circle cx="11" cy="10" r="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Graphic Designer</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        I combine clean code with creative graphic design to build cohesive, visually compelling digital solutions that communicate and perform.
+                    </p>
+                </div>
+
+                <!-- Service 3 - Data Analyst (يمكنك إضافته أو تعديله) -->
+                <div class="service-card p-8 rounded-xl text-center group">
+                    <div class="flex justify-center mb-4 service-icon-container">
+                        <svg class="w-16 h-16 mx-auto transition" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M4 20H20V4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <rect x="6" y="14" width="2" height="4" rx="0.5"/>
+                            <rect x="10" y="10" width="2" height="8" rx="0.5"/>
+                            <rect x="14" y="6" width="2" height="12" rx="0.5"/>
+                            <rect x="18" y="2" width="2" height="16" rx="0.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Data Analyst</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Transforming raw data into clear, actionable insights that drive smart, effective, and strategic business decisions.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="glowing-line mt-12"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section py-8 border-t">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl font-bold" style="font-family: 'Dancing Script', cursive; color: var(--footer-text);">
+                        Mohammed Senan
+                    </h3>
+                </div>
+                <div class="text-center md:text-right text-sm" style="color: var(--footer-text);">
+                    &copy; M.S. All rights reserved 2024
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
